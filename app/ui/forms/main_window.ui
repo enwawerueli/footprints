@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>913</width>
+    <height>507</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="table_caption_lb">
+          <property name="text">
+           <string>Table caption</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="search_product_le">
+          <property name="placeholderText">
+           <string>Search product...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="clear_product_search_pb">
+          <property name="text">
+           <string>Clear</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="products_tw">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::CustomContextMenu</enum>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QPushButton" name="home_pb">
+          <property name="text">
+           <string>&lt;&lt; Home</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pg_up_bp">
+          <property name="text">
+           <string>&lt; Pg Up</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pg_down_pb">
+          <property name="text">
+           <string>Pg Down &gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="end_pb">
+          <property name="text">
+           <string>End &gt;&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="detailview_ckb">
+          <property name="text">
+           <string>&amp;Show detailed view</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="add_product_pb">
+          <property name="text">
+           <string>New &amp;Product</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QDockWidget" name="categories_dkw">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Categories</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLineEdit" name="search_category_le">
+           <property name="placeholderText">
+            <string>Search category...</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="clear_category_search_pb">
+           <property name="text">
+            <string>Clear</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QListWidget" name="categories_lw">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="add_category_pb">
+           <property name="text">
+            <string>New &amp;Category</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="cartitems_dkw">
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Cart Items</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QVBoxLayout" name="verticalLayout_9">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QTableWidget" name="cart_tw">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="checkout_pb">
+           <property name="text">
+            <string>Check&amp;out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="clear_cart_pb">
+           <property name="text">
+            <string>C&amp;lear</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>913</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_view">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="action_toggle_categories"/>
+    <addaction name="action_toggle_cartitems"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menu_file">
+    <property name="geometry">
+     <rect>
+      <x>324</x>
+      <y>156</y>
+      <width>133</width>
+      <height>206</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <widget class="QMenu" name="menuNew">
+     <property name="title">
+      <string>New</string>
+     </property>
+     <addaction name="action_add_product"/>
+     <addaction name="action_add_category"/>
+     <addaction name="action_add_user"/>
+    </widget>
+    <addaction name="menuNew"/>
+    <addaction name="action_show_sales"/>
+    <addaction name="separator"/>
+    <addaction name="action_preferences"/>
+    <addaction name="separator"/>
+    <addaction name="action_exit"/>
+   </widget>
+   <widget class="QMenu" name="menu_help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_about"/>
+   </widget>
+   <addaction name="menu_file"/>
+   <addaction name="menu_view"/>
+   <addaction name="menu_help"/>
+  </widget>
+  <action name="action_add_product">
+   <property name="text">
+    <string>Product</string>
+   </property>
+   <property name="statusTip">
+    <string>Add a new product</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="action_add_category">
+   <property name="text">
+    <string>Category</string>
+   </property>
+   <property name="statusTip">
+    <string>Add a new category</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="action_add_user">
+   <property name="text">
+    <string>User</string>
+   </property>
+   <property name="statusTip">
+    <string>Add a new user</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="action_exit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="statusTip">
+    <string>Quit Application</string>
+   </property>
+   <property name="whatsThis">
+    <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::WindowShortcut</enum>
+   </property>
+  </action>
+  <action name="action_preferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+   <property name="statusTip">
+    <string>Change preferences</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
+   </property>
+  </action>
+  <action name="action_show_sales">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Sales</string>
+   </property>
+   <property name="statusTip">
+    <string>Show/Hide sales window</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="action_about">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="action_toggle_categories">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Categories</string>
+   </property>
+   <property name="statusTip">
+    <string>Show/Hide categories</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="action_toggle_cartitems">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Cart Items</string>
+   </property>
+   <property name="statusTip">
+    <string>Show/Hide cart items</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>search_category_le</tabstop>
+  <tabstop>clear_category_search_pb</tabstop>
+  <tabstop>categories_lw</tabstop>
+  <tabstop>add_category_pb</tabstop>
+  <tabstop>cart_tw</tabstop>
+  <tabstop>checkout_pb</tabstop>
+  <tabstop>clear_cart_pb</tabstop>
+  <tabstop>search_product_le</tabstop>
+  <tabstop>clear_product_search_pb</tabstop>
+  <tabstop>home_pb</tabstop>
+  <tabstop>pg_up_bp</tabstop>
+  <tabstop>pg_down_pb</tabstop>
+  <tabstop>end_pb</tabstop>
+  <tabstop>detailview_ckb</tabstop>
+  <tabstop>add_product_pb</tabstop>
+  <tabstop>products_tw</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

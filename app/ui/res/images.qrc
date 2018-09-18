@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="lock">images/lock.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file alias="footprints">icons/footprints-blue.png</file>
+    </qresource>
+</RCC>
