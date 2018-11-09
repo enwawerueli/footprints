@@ -1,4 +1,5 @@
-from PySide.QtGui import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
 
 from .ui.ui_category_form import Ui_CategoryForm
 from .db import session
@@ -19,6 +20,7 @@ class CategoryForm(QDialog, Ui_CategoryForm):
         self.ok_btn.setDisabled(category is None)
         self.name_le.textChanged.connect(self.allow_to_continue)
         if self._category is not None:
+            self.groupBox.setTitle('Edit Category')
             self.name_le.setText(category.name)
             self.description_te.setPlainText(category.description)
 
@@ -42,11 +44,11 @@ class CategoryForm(QDialog, Ui_CategoryForm):
 
     def accept(self):
         try:
-            uid = self.update() if self._category is not None else self.create()
+            category = self.update() if self._category is not None else self.create()
         except Exception as e:
             QMessageBox.critical(self, QApplication.applicationName(), 'An error occured\n' + str(e))
         else:
-            self.signals.categories_updated[int].emit(uid)
+            self.signals.categories_updated[int].emit(category.uid)
         return QDialog.accept(self)
 
     def update(self):
@@ -57,7 +59,7 @@ class CategoryForm(QDialog, Ui_CategoryForm):
         except Exception:
             session.rollback()
             raise
-        return self._category.uid
+        return self._category
 
     def create(self):
         category = Category(name=self.name, description=self.description)
@@ -67,4 +69,4 @@ class CategoryForm(QDialog, Ui_CategoryForm):
         except Exception:
             session.rollback()
             raise
-        return category.uid
+        return category

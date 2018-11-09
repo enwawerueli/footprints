@@ -21,44 +21,44 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <spacer name="verticalSpacer">
+         <spacer name="horizontalSpacer_2">
           <property name="orientation">
-           <enum>Qt::Vertical</enum>
+           <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>20</width>
-            <height>40</height>
+            <width>125</width>
+            <height>20</height>
            </size>
           </property>
          </spacer>
         </item>
         <item>
-         <widget class="QLabel" name="icon_lb">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <spacer name="horizontalSpacer_2">
+           <spacer name="verticalSpacer">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Vertical</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>40</width>
-              <height>20</height>
+              <width>20</width>
+              <height>40</height>
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="avatar_lb">
+            <property name="text">
+             <string>Avatar</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
           </item>
           <item>
            <layout class="QFormLayout" name="formLayout">
@@ -97,7 +97,7 @@
               <item>
                <widget class="QPushButton" name="login_pb">
                 <property name="text">
-                 <string>LOGIN</string>
+                 <string>LOG&amp;IN</string>
                 </property>
                </widget>
               </item>
@@ -119,14 +119,14 @@
            </layout>
           </item>
           <item>
-           <spacer name="horizontalSpacer_3">
+           <spacer name="verticalSpacer_2">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Vertical</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>40</width>
-              <height>20</height>
+              <width>20</width>
+              <height>40</height>
              </size>
             </property>
            </spacer>
@@ -134,14 +134,14 @@
          </layout>
         </item>
         <item>
-         <spacer name="verticalSpacer_2">
+         <spacer name="horizontalSpacer_3">
           <property name="orientation">
-           <enum>Qt::Vertical</enum>
+           <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>20</width>
-            <height>40</height>
+            <width>125</width>
+            <height>20</height>
            </size>
           </property>
          </spacer>
@@ -162,8 +162,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>308</x>
-     <y>196</y>
+     <x>332</x>
+     <y>237</y>
     </hint>
     <hint type="destinationlabel">
      <x>243</x>

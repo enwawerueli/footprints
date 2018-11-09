@@ -1,10 +1,10 @@
 import re
 
-from PySide.QtGui import QAction
+from PySide2.QtWidgets import QAction, QApplication
 
 
 def isiterable(obj):
-    """Check if an object supports iteration"""
+    """ Check if an object supports iteration """
     try:
         iter(obj)  # Try to get its iterator
     except TypeError:
@@ -13,13 +13,13 @@ def isiterable(obj):
 
 
 def fuzzy_search(chars, collection):
-    """Perform a fuzzy search for a set of characters against a string
+    """ Perform a fuzzy search for a set of characters against a string
     and filter out those where a match is found.
-    Arguments
-        chars: the characters to search.
-        collection: a list of strings to search against, or other iterable
-        whose items are strings.
-        return: a list of those strings where a match was found.
+
+    :param chars: the characters to search.
+    :param collection: a list of strings to search against, or other iterable
+                       whose items are strings.
+    :return: a list of those strings where a match was found.
     """
     chars = re.escape(chars)
     pattern = r''
@@ -67,3 +67,11 @@ def close_subwindow(event_method):
         parent.subwindows.remove(receiver)
         return event_method(receiver, *args, **kwargs)
     return wrapper
+
+
+def center(window):
+    """ Center window on the desktop """
+    qrect = window.frameGeometry()
+    qpoint = QApplication.desktop().availableGeometry().center()
+    qrect.moveCenter(qpoint)
+    window.move(qrect.topLeft())

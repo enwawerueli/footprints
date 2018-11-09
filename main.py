@@ -1,24 +1,19 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python
 
 import sys
 
-from PySide.QtGui import QApplication
+from PySide2.QtWidgets import QApplication
 
 from app.main_window import MainWindow
+from config import Config
 
-# decimal.getcontext().prec = 2
-
-ORG_NAME = 'footprints'
-ORG_DOMAIN = 'dev.footprints.local'
-APP_NAME = 'Footprints'
-APP_VERSION = 'v0.3.0'
 
 app = QApplication(sys.argv)
-app.setOrganizationName(ORG_NAME)
-app.setOrganizationDomain(ORG_DOMAIN)
-app.setApplicationName(APP_NAME)
-app.setApplicationVersion(APP_VERSION)
+app.setOrganizationName(Config.ORG_NAME)
+app.setOrganizationDomain(Config.ORG_DOMAIN)
+app.setApplicationName(Config.APP_NAME)
+app.setApplicationVersion(Config.APP_VERSION)
 myapp = MainWindow()
-myapp.showMaximized()
-# myapp.run()
+# myapp.showMaximized()
+myapp.run()
 sys.exit(app.exec_())

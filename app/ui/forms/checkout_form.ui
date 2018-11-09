@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>393</width>
-    <height>229</height>
+    <height>286</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -96,12 +96,6 @@
         </item>
         <item row="1" column="1" colspan="2">
          <widget class="QLineEdit" name="discount_le">
-          <property name="inputMask">
-           <string/>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
@@ -130,7 +124,7 @@
         <item row="4" column="0">
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>&amp;Cash Tendered :</string>
+           <string>C&amp;ash Tendered :</string>
           </property>
           <property name="buddy">
            <cstring>cash_le</cstring>
@@ -139,9 +133,6 @@
         </item>
         <item row="4" column="1" colspan="2">
          <widget class="QLineEdit" name="cash_le">
-          <property name="text">
-           <string/>
-          </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>

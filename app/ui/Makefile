@@ -5,7 +5,7 @@ RESOURCES_DIR = ./res
 # Output directory
 COMPILED_DIR = .
 # PySide UI compiler
-UIC = pyside-uic
+UIC = pyside2-uic
 # PySide resource compiler
 RCC = pyside-rcc
 
@@ -28,11 +28,11 @@ ui : $(COMPILED_UI_FILES)
 res : $(COMPILED_RESOURCE_FILES)
 
 $(COMPILED_DIR)/ui_%.py : $(UI_DIR)/%.ui
-	@echo Compiling UI files...
+	@echo Compiling ui $?...
 	$(UIC) $< -o $@
 
 $(COMPILED_DIR)/%_rc.py : $(RESOURCES_DIR)/%.qrc
-	@echo Compiling resource files...
+	@echo Compiling resource $?...
 	$(RCC) $< -o $@
 
 # Remove the compiled files

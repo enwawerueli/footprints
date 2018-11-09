@@ -90,6 +90,9 @@
         <property name="selectionBehavior">
          <enum>QAbstractItemView::SelectRows</enum>
         </property>
+        <property name="showGrid">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -102,7 +105,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pg_up_bp">
+         <widget class="QPushButton" name="pg_up_pb">
           <property name="text">
            <string>&lt; Pg Up</string>
           </property>
@@ -139,13 +142,6 @@
          <widget class="QCheckBox" name="detailview_ckb">
           <property name="text">
            <string>&amp;Show detailed view</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="add_product_pb">
-          <property name="text">
-           <string>New &amp;Product</string>
           </property>
          </widget>
         </item>
@@ -207,30 +203,6 @@
          </property>
         </widget>
        </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="add_category_pb">
-           <property name="text">
-            <string>New &amp;Category</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
       </layout>
      </item>
     </layout>
@@ -273,38 +245,10 @@
          <property name="selectionBehavior">
           <enum>QAbstractItemView::SelectRows</enum>
          </property>
+         <property name="showGrid">
+          <bool>false</bool>
+         </property>
         </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <item>
-          <spacer name="horizontalSpacer_6">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="checkout_pb">
-           <property name="text">
-            <string>Check&amp;out</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="clear_cart_pb">
-           <property name="text">
-            <string>C&amp;lear</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </item>
       </layout>
      </item>
@@ -324,8 +268,7 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="action_toggle_categories"/>
-    <addaction name="action_toggle_cartitems"/>
+    <addaction name="action_show_sales"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menu_file">
@@ -333,23 +276,19 @@
      <rect>
       <x>324</x>
       <y>156</y>
-      <width>133</width>
-      <height>206</height>
+      <width>207</width>
+      <height>307</height>
      </rect>
     </property>
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <widget class="QMenu" name="menuNew">
-     <property name="title">
-      <string>New</string>
-     </property>
-     <addaction name="action_add_product"/>
-     <addaction name="action_add_category"/>
-     <addaction name="action_add_user"/>
-    </widget>
-    <addaction name="menuNew"/>
-    <addaction name="action_show_sales"/>
+    <addaction name="action_checkout"/>
+    <addaction name="action_clear_cart"/>
+    <addaction name="separator"/>
+    <addaction name="action_add_product"/>
+    <addaction name="action_add_category"/>
+    <addaction name="action_add_user"/>
     <addaction name="separator"/>
     <addaction name="action_preferences"/>
     <addaction name="separator"/>
@@ -360,6 +299,7 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="action_about"/>
+    <addaction name="action_about_qt"/>
    </widget>
    <addaction name="menu_file"/>
    <addaction name="menu_view"/>
@@ -367,32 +307,35 @@
   </widget>
   <action name="action_add_product">
    <property name="text">
-    <string>Product</string>
+    <string>Add Product</string>
    </property>
    <property name="statusTip">
     <string>Add a new product</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+D</string>
+    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="action_add_category">
    <property name="text">
-    <string>Category</string>
+    <string>Add Category</string>
    </property>
-   <property name="statusTip">
+   <property name="toolTip">
     <string>Add a new category</string>
    </property>
+   <property name="statusTip">
+    <string>Add a new product category</string>
+   </property>
    <property name="shortcut">
-    <string>Ctrl+A</string>
+    <string>Ctrl+Alt+N</string>
    </property>
   </action>
   <action name="action_add_user">
    <property name="text">
-    <string>User</string>
+    <string>Create User</string>
    </property>
    <property name="statusTip">
-    <string>Add a new user</string>
+    <string>Create a new user account</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
@@ -403,7 +346,7 @@
     <string>Exit</string>
    </property>
    <property name="statusTip">
-    <string>Quit Application</string>
+    <string>Close this window</string>
    </property>
    <property name="whatsThis">
     <string>Quit</string>
@@ -417,13 +360,13 @@
   </action>
   <action name="action_preferences">
    <property name="text">
-    <string>Preferences</string>
+    <string>Administration &amp;&amp; Settings</string>
    </property>
    <property name="statusTip">
-    <string>Change preferences</string>
+    <string>Admin panel and preferences</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+J</string>
+    <string>Ctrl+Shift+J</string>
    </property>
   </action>
   <action name="action_show_sales">
@@ -431,10 +374,10 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Sales</string>
+    <string>Show sales</string>
    </property>
    <property name="statusTip">
-    <string>Show/Hide sales window</string>
+    <string>Show/hide sales</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
@@ -476,7 +419,48 @@
     <string>Show/Hide cart items</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+H</string>
+    <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="actionAdd_current_product_to_cart">
+   <property name="text">
+    <string>Add current product to cart</string>
+   </property>
+  </action>
+  <action name="action_checkout">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Checkout</string>
+   </property>
+   <property name="statusTip">
+    <string>Go to checkout</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Return</string>
+   </property>
+  </action>
+  <action name="action_clear_cart">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Clear Cart Items</string>
+   </property>
+   <property name="statusTip">
+    <string>Remove all items from the cart</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+-</string>
+   </property>
+  </action>
+  <action name="action_about_qt">
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+   <property name="statusTip">
+    <string>About Qt</string>
    </property>
   </action>
  </widget>
@@ -484,18 +468,14 @@
   <tabstop>search_category_le</tabstop>
   <tabstop>clear_category_search_pb</tabstop>
   <tabstop>categories_lw</tabstop>
-  <tabstop>add_category_pb</tabstop>
   <tabstop>cart_tw</tabstop>
-  <tabstop>checkout_pb</tabstop>
-  <tabstop>clear_cart_pb</tabstop>
   <tabstop>search_product_le</tabstop>
   <tabstop>clear_product_search_pb</tabstop>
   <tabstop>home_pb</tabstop>
-  <tabstop>pg_up_bp</tabstop>
+  <tabstop>pg_up_pb</tabstop>
   <tabstop>pg_down_pb</tabstop>
   <tabstop>end_pb</tabstop>
   <tabstop>detailview_ckb</tabstop>
-  <tabstop>add_product_pb</tabstop>
   <tabstop>products_tw</tabstop>
  </tabstops>
  <resources/>

@@ -1,17 +1,13 @@
-from PySide.QtCore import QObject, Signal
+from PySide2.QtCore import QObject, Signal
 
 from .utils.singleton import Singleton
 
 
 @Singleton
 class AppSignals(QObject):
-    """Wrapper class for application signals"""
+    """Wrapper class for signals emitted by the application"""
 
-    categories_updated = Signal((), (int,))
-    products_updated = Signal((), (int,))
-    cartitems_updated = Signal()
-    sales_updated = Signal()
-
-    def __init__(self):
-        QObject.__init__(self)
-        self.categories_updated.connect(self.products_updated.emit)
+    categories_updated = Signal([], [int])
+    products_updated = Signal([], [int])
+    cartitems_updated = Signal([], [int])
+    sales_updated = Signal([], [int])

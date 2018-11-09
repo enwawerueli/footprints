@@ -1,13 +1,14 @@
 from functools import reduce
 from decimal import Decimal
 
-from PySide.QtGui import *
-from PySide.QtCore import *
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
 
 from .ui.ui_product_form import Ui_ProductForm
 from .db import session
-from .db.models import Category, Product
-from .containers import Categories
+from .db.models import Product
+from .containers import CategoriesContainer
 from .signals import AppSignals
 
 
@@ -43,18 +44,19 @@ class ProductForm(QDialog, Ui_ProductForm):
         self.price_le.textEdited.connect(self.update_profit)
         self.cost_le.textEdited.connect(self.update_profit)
         self.profit_le.textEdited.connect(self.update_price)
-        for index, category in enumerate(Categories().all()):
+        self._categories = CategoriesContainer()
+        for index, category in enumerate(self._categories.all()):
             self.category_cb.addItem(category.name, category.uid)
-            if product is None:
-                continue
-            if category.uid == product.category.uid:
+            if product is not None and category.uid == product.category.uid:
                 self.category_cb.setCurrentIndex(index)
         if product is not None:
+            self.groupBox.setTitle('Edit Product')
             self.name_le.setText(product.name)
             self.sku_le.setText(product.sku)
             self.cost_le.setText(str(product.unit_cost))
             self.price_le.setText(str(product.unit_price))
-            self.profit_le.setText(str(((product.unit_price / product.unit_cost - 1) * 100).quantize(Decimal('.00'))))
+            profit = (product.unit_price / product.unit_cost - 1) * 100
+            self.profit_le.setText(str(profit.quantize(Decimal('.00'))))
             self.units_sb.setValue(product.units)
             self.description_te.setPlainText(product.description)
 
@@ -73,7 +75,7 @@ class ProductForm(QDialog, Ui_ProductForm):
     @property
     def category(self):
         uid = self.category_cb.itemData(self.category_cb.currentIndex())
-        return session.query(Category).get(uid)
+        return self._categories.get(uid)
 
     @property
     def unit_cost(self):
@@ -117,7 +119,7 @@ class ProductForm(QDialog, Ui_ProductForm):
 
     def is_valid(self):
         return reduce(lambda x, y: True if x and y else False,
-                      (self.name, self.sku, self.units, self.unit_cost, self.unit_price))
+                      (self.name, self.sku, self.unit_cost, self.unit_price))
 
     def allow_to_continue(self, *args):
         self.ok_btn.setEnabled(self.is_valid())
@@ -128,11 +130,11 @@ class ProductForm(QDialog, Ui_ProductForm):
 
     def accept(self):
         try:
-            uid = self.update() if self._product is not None else self.create()
+            product = self.update() if self._product is not None else self.create()
         except Exception as e:
             QMessageBox.critical(self, QApplication.applicationName(), 'An error occured\n' + str(e))
         else:
-            self.signals.products_updated[int].emit(uid)
+            self.signals.products_updated[int].emit(product.uid)
         return QDialog.accept(self)
 
     def update(self):
@@ -148,7 +150,7 @@ class ProductForm(QDialog, Ui_ProductForm):
         except Exception:
             session.rollback()
             raise
-        return self._product.uid
+        return self._product
 
     def create(self):
         product = Product(name=self.name, sku=self.sku, unit_cost=self.unit_cost, unit_price=self.unit_price,
@@ -159,4 +161,4 @@ class ProductForm(QDialog, Ui_ProductForm):
         except Exception:
             session.rollback()
             raise
-        return product.uid
+        return product

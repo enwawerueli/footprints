@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'forms/category_form.ui'
+# Form implementation generated from reading ui file 'forms/category_form.ui',
+# licensing of 'forms/category_form.ui' applies.
 #
-# Created: Sun Aug 26 15:58:38 2018
-#      by: pyside-uic 0.2.13 running on PySide 1.2.2
+# Created: Mon Oct 29 23:51:51 2018
+#      by: pyside2-uic  running on PySide2 5.11.2
 #
 # WARNING! All changes made in this file will be lost!
 
-from PySide import QtCore, QtGui
+from PySide2 import QtCore, QtGui, QtWidgets
 
 class Ui_CategoryForm(object):
     def setupUi(self, CategoryForm):
@@ -16,30 +17,30 @@ class Ui_CategoryForm(object):
         CategoryForm.setAutoFillBackground(False)
         CategoryForm.setSizeGripEnabled(True)
         CategoryForm.setModal(False)
-        self.verticalLayout_3 = QtGui.QVBoxLayout(CategoryForm)
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(CategoryForm)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.groupBox = QtGui.QGroupBox(CategoryForm)
+        self.groupBox = QtWidgets.QGroupBox(CategoryForm)
         self.groupBox.setObjectName("groupBox")
-        self.verticalLayout = QtGui.QVBoxLayout(self.groupBox)
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.groupBox)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.formLayout = QtGui.QFormLayout()
+        self.formLayout = QtWidgets.QFormLayout()
         self.formLayout.setObjectName("formLayout")
-        self.label = QtGui.QLabel(self.groupBox)
+        self.label = QtWidgets.QLabel(self.groupBox)
         self.label.setObjectName("label")
-        self.formLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.label)
-        self.name_le = QtGui.QLineEdit(self.groupBox)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label)
+        self.name_le = QtWidgets.QLineEdit(self.groupBox)
         self.name_le.setObjectName("name_le")
-        self.formLayout.setWidget(0, QtGui.QFormLayout.FieldRole, self.name_le)
-        self.label_2 = QtGui.QLabel(self.groupBox)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.name_le)
+        self.label_2 = QtWidgets.QLabel(self.groupBox)
         self.label_2.setObjectName("label_2")
-        self.formLayout.setWidget(1, QtGui.QFormLayout.LabelRole, self.label_2)
-        self.description_te = QtGui.QTextEdit(self.groupBox)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_2)
+        self.description_te = QtWidgets.QTextEdit(self.groupBox)
         self.description_te.setObjectName("description_te")
-        self.formLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.description_te)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.description_te)
         self.verticalLayout.addLayout(self.formLayout)
-        self.buttonBox = QtGui.QDialogButtonBox(self.groupBox)
+        self.buttonBox = QtWidgets.QDialogButtonBox(self.groupBox)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.verticalLayout.addWidget(self.buttonBox)
         self.verticalLayout_3.addWidget(self.groupBox)
@@ -54,8 +55,8 @@ class Ui_CategoryForm(object):
         CategoryForm.setTabOrder(self.description_te, self.buttonBox)
 
     def retranslateUi(self, CategoryForm):
-        CategoryForm.setWindowTitle(QtGui.QApplication.translate("CategoryForm", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox.setTitle(QtGui.QApplication.translate("CategoryForm", "Add new category", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("CategoryForm", "&Name :", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("CategoryForm", "&Description :", None, QtGui.QApplication.UnicodeUTF8))
+        CategoryForm.setWindowTitle(QtWidgets.QApplication.translate("CategoryForm", "Dialog", None, -1))
+        self.groupBox.setTitle(QtWidgets.QApplication.translate("CategoryForm", "Add new category", None, -1))
+        self.label.setText(QtWidgets.QApplication.translate("CategoryForm", "&Name :", None, -1))
+        self.label_2.setText(QtWidgets.QApplication.translate("CategoryForm", "&Description :", None, -1))
 

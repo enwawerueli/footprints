@@ -1,6 +1,7 @@
 from decimal import Decimal
 
-from PySide.QtGui import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
 
 from .ui.ui_checkout_form import Ui_CheckoutForm
 from .signals import AppSignals
@@ -74,9 +75,9 @@ class CheckoutForm(QDialog, Ui_CheckoutForm):
         self.amount_due_lb.setText(str(amount_due.quantize(Decimal('.00'))))
 
     def update_change(self, *args):
-        self.change_lb.clear()
         if self.cash < self.amount_due:
             return None
+        self.change_lb.clear()
         change = self.cash - self.amount_due
         self.change_lb.setText(str(change.quantize(Decimal('.00'))))
         return None

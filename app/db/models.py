@@ -1,4 +1,4 @@
-from datetime import datetime as dt
+from datetime import datetime
 from decimal import Decimal
 
 import sqlalchemy as sa
@@ -13,6 +13,7 @@ class Product(Base):
     """Class mapping for the products table"""
 
     __tablename__ = 'products'
+
     uid = sa.Column(sa.Integer(), primary_key=True)
     name = sa.Column(sa.String(255), unique=True, nullable=False, index=True)
     sku = sa.Column(sa.String(60), unique=True, nullable=False)
@@ -21,11 +22,12 @@ class Product(Base):
     units = sa.Column(sa.Integer(), default=0)
     category_uid = sa.Column(sa.Integer(), sa.ForeignKey('categories.uid'))
     description = sa.Column(sa.Text())
-    created_at = sa.Column(sa.DateTime(), default=dt.now)
-    updated_at = sa.Column(sa.DateTime(), default=dt.now, onupdate=dt.now)
+    created_at = sa.Column(sa.DateTime(), default=datetime.now)
+    updated_at = sa.Column(sa.DateTime(), default=datetime.now, onupdate=datetime.now)
     category = relationship('Category', back_populates='products')
     sales = relationship('Sale', back_populates='product')
-    __table_args__ = (sa.CheckConstraint('units' >= 0),)
+
+    __table_args__ = (sa.CheckConstraint(units >= 0),)
 
     def __init__(self, name, sku, unit_cost, unit_price, units, category, description):
         self.name = name
@@ -75,11 +77,12 @@ class Category(Base):
     """Class mapping for the categories table"""
 
     __tablename__ = 'categories'
+
     uid = sa.Column(sa.Integer(), primary_key=True)
     name = sa.Column(sa.String(255), nullable=False, unique=True, index=True)
     description = sa.Column(sa.Text())
-    created_at = sa.Column(sa.DateTime(), default=dt.now)
-    updated_at = sa.Column(sa.DateTime(), default=dt.now, onupdate=dt.now)
+    created_at = sa.Column(sa.DateTime(), default=datetime.now)
+    updated_at = sa.Column(sa.DateTime(), default=datetime.now, onupdate=datetime.now)
     products = relationship('Product', back_populates='category', cascade='all, delete-orphan')
 
     def __str__(self):
@@ -89,12 +92,14 @@ class Category(Base):
 class Sale(Base):
 
     __tablename__ = 'sales'
+
     uid = sa.Column(sa.Integer(), primary_key=True)
     product_uid = sa.Column(sa.Integer(), sa.ForeignKey('products.uid'))
     qty = sa.Column(sa.Integer(), nullable=False)
-    created_at = sa.Column(sa.DateTime(), default=dt.now)
+    created_at = sa.Column(sa.DateTime(), default=datetime.now)
     product = relationship('Product', back_populates='sales')
-    __table_args__ = (sa.CheckConstraint('qty' >= 1),)
+
+    __table_args__ = (sa.CheckConstraint(qty >= 1),)
 
     @property
     def amount(self):
@@ -108,11 +113,13 @@ class User(Base):
     """Class mapping for users table"""
 
     __tablename__ = 'users'
+
     uid = sa.Column(sa.Integer(), primary_key=True)
     username = sa.Column(sa.String(255), unique=True, nullable=False)
     _password = sa.Column(sa.String(255), nullable=False)
-    created_at = sa.Column(sa.DateTime(), default=dt.now)
-    updated_at = sa.Column(sa.DateTime(), default=dt.now)
+    # admin = sa.Column(sa.Boolean(), default=True)
+    created_at = sa.Column(sa.DateTime(), default=datetime.now)
+    updated_at = sa.Column(sa.DateTime(), default=datetime.now)
 
     def __init__(self, username, password):
         self.username = username

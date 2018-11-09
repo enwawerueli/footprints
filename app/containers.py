@@ -1,13 +1,15 @@
 from functools import reduce
-from datetime import date, datetime as dt, time
+from datetime import date, datetime, time
 from decimal import Decimal
 
+import sqlalchemy as sa
+
 from .db import session
-from .db.models import Product, Category, Sale
+from .db.models import Product, Category, Sale, User
 from .utils.func import fuzzy_search
 
 
-class Products(object):
+class ProductsContainer(object):
 
     HEADERS = ('Item', 'SKU', 'Unit Cost', 'Unit Price', 'Units', 'Created', 'Modified', 'Value')
     NAME, SKU, COST, PRICE, UNITS, CREATED, UPDATED, VALUE = range(len(HEADERS))
@@ -50,7 +52,7 @@ class Products(object):
         return reduce(lambda x, y: x + y.value, self.all(), Decimal('0.00'))
 
 
-class Categories(object):
+class CategoriesContainer(object):
 
     def __init__(self):
         self._search = None
@@ -113,7 +115,7 @@ class CartItem(object):
         return self.product.unit_price * self.qty
 
 
-class CartItems(object):
+class CartItemsContainer(object):
     """Container class for a list of CartItem instances"""
 
     HEADERS = ('Item', 'Quantity', 'Unit Price', 'Total')
@@ -163,19 +165,19 @@ class CartItems(object):
         return reduce(lambda x, y: x + y.total, self._container, Decimal('0.00'))
 
 
-class Sales(object):
+class SalesContainer(object):
 
     HEADERS = ('Timestamp', 'Item', 'Qty', 'Amount')
     TIMESTAMP, NAME, QTY, AMOUNT = range(len(HEADERS))
 
     def __init__(self):
-        t = date.today()
-        self._from_date = t
-        self._to_date = t
+        today = date.today()
+        self._from_date = today
+        self._to_date = today
 
     @property
     def from_date(self):
-        return dt.combine(self._from_date, time.min)
+        return datetime.combine(self._from_date, time.min)
 
     @from_date.setter
     def from_date(self, date):
@@ -183,14 +185,27 @@ class Sales(object):
 
     @property
     def to_date(self):
-        return dt.combine(self._to_date, time.max)
+        return datetime.combine(self._to_date, time.max)
 
     @to_date.setter
     def to_date(self, date):
         self._to_date = date
 
     def all(self):
-        return session.query(Sale).filter(Sale.created_at >= self.from_date, Sale.created_at <= self.to_date).all()
+        qry = session.query(Sale)
+        qry = qry.filter(sa.and_(Sale.created_at >= self.from_date, Sale.created_at <= self.to_date))
+        return qry.all()
 
     def total(self):
         return reduce(lambda x, y: x + y.amount, self.all(), Decimal('0.00'))
+
+
+class Users(object):
+
+    @staticmethod
+    def get(username):
+        return session.query(User).filter_by(username=username).first()
+
+    @staticmethod
+    def one():
+        return session.query(User.uid).first()
