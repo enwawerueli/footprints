@@ -1,0 +1,36 @@
+{% extends 'print.jinja2.html' %}
+
+{% block style %}
+    <style type="text/css">
+        th, td {
+            padding: 0 4px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <p>Statement report, <nobr>From: <b>{{ frm }}</b></nobr> <nobr>To: <b>{{ to }}</b></nobr></p>
+    <br>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Transaction ID</th>
+            <th>Gross Amount</th>
+            <th>Discount</th>
+            <th>Net Amount</th>
+        </tr>
+        {% for tr in transactions.all() %}
+            <tr>
+                <td><nobr>{{ tr.created_at.strftime('%d/%m/%Y, %I:%M:%S %p') }}</nobr></td>
+                <td>{{ tr.code }}</td>
+                <td align="right">{{ tr.gross_amount }}</td>
+                <td align="right">{{ tr.discount }}</td>
+                <td align="right">{{ tr.net_amount }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan=4>Total Amount:</td>
+            <td align="right"><b>{{ transactions.total() }}</b></td>
+        </tr>
+    </table>
+{% endblock %}

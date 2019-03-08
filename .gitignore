@@ -1,10 +1,11 @@
-# Ignored directories
-venv/
-__pycache__/
-_bak/
-
 # Ignored files
 *.pyc
 *.sqlite3
 *.db
 *.bak
+*.spec
+
+# Ignored directories
+venv/
+__pycache__/
+bak/
