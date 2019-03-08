@@ -1,0 +1,58 @@
+{% if not standalone %}{% extends 'print.jinja2.html' %}{% endif %}
+<html>
+    <head>
+    {% block style %}
+        {% if not standalone %}{{ super() }}{% endif %}
+        <style type="text/css">
+            th, td {
+                padding: 0 4px;
+            }
+            th.num, td.num {
+                padding: 0;
+            }
+        </style>
+    {% endblock %}
+    </head>
+    <body>
+    {% block content %}
+        <p>Transaction ID: {{transaction.code}}</p>
+        <p>Transaction Date: <nobr>{{transaction.created_at.strftime('%d/%m/%Y, %I:%M:%S %p')}}</nobr></p>
+        <br>
+        <table id="items">
+            <tr>
+                <th class="num"></th>
+                <th>SKU</th>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Amount</th>
+            </tr>
+            {% for item in transaction.sales %}
+                <tr>
+                    <td class="num">{{loop.index}}.</td>
+                    <td>{{item.product.sku}}</td>
+                    <td><nobr>{{item.product.name}}</nobr></td>
+                    <td align="right">{{item.qty}}</td>
+                    <td align="right">{{item.product.unit_price}}</td>
+                    <td align="right">{{item.qty * item.product.unit_price}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td class="num"></td>
+                <td colspan=4>Gross Amount:</td>
+                <td align="right"><b>{{transaction.gross_amount}}</b></td>
+            </tr>
+            <tr>
+                <td class="num"></td>
+                <td colspan=4>Discount:</td>
+                <td align="right"><b>{{transaction.discount}}</b></td>
+            </tr>
+            <tr>
+                <td class="num"></td>
+                <td colspan=4>Net Amount:</td>
+                <td align="right"><b>{{transaction.net_amount}}</b></td>
+            </tr>
+        </table>
+    {% endblock %}
+    </body>
+</html>

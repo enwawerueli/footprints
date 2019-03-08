@@ -5,8 +5,8 @@ import sys
 
 sys.path.append(os.getcwd())
 
-from app.db import engine
-from app.db.models import Base
+from footprints.db import engine
+from footprints.db.models import Base
 
 
 Base.metadata.create_all(engine)

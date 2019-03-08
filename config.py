@@ -1,6 +1,6 @@
 class Config(object):
 
     ORG_NAME = 'footprints'
-    ORG_DOMAIN = 'dev.footprints.local'
+    ORG_DOMAIN = 'footprints.devel'
     APP_NAME = 'Footprints'
-    APP_VERSION = 'v0.31'
+    APP_VERSION = '0.4.0'
